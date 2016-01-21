@@ -220,7 +220,7 @@ module Provider
       changed = false
       properties.each do |sym|
         unless resource.parameter(sym).nil?
-          changed = true if @property_flush[sym] != resource[sym]
+          changed = true if @property_flush[sym] != @property_hash[sym]
         end 
       end
       changed
