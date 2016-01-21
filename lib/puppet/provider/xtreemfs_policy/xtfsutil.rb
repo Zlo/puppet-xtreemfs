@@ -7,7 +7,7 @@ Puppet::Type.type(:xtreemfs_policy).provide(:xtfsutil,
 
   commands :xtfsutil => 'xtfsutil'
 
-  # Loads an raw data for directory
+  # Loads raw data for directory
   #
   # @param directory [String] a directory name
   # @return [Hash] a raw data hash
@@ -17,14 +17,16 @@ Puppet::Type.type(:xtreemfs_policy).provide(:xtfsutil,
     props = {}
     output.split("\n").each do |line|
       m = re.match line
-      key = m[1].strip
-      value = m[2].strip
-      props[key] = value
+      if m
+        key = m[1].strip
+        value = m[2].strip
+        props[key] = value
+      end
     end
     return props
   end
 
-  # Loads an provider with data for directory
+  # Loads a provider with data for directory
   #
   # @param directory [String] a directory name
   # @return [Puppet::Type::Xtreemfs_replicate::Xtfsutil]
@@ -104,7 +106,7 @@ Puppet::Type.type(:xtreemfs_policy).provide(:xtfsutil,
   end
   
   # Flushes all dsp properties
-  # @return [nil] nothing
+  # @return [String] xtfsutil output
   def flush_dsp
     output = xtfsutil [
       '--set-dsp', 
