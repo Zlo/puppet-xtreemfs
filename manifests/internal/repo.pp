@@ -24,9 +24,9 @@ class xtreemfs::internal::repo {
       }
       apt::source { 'xtreemfs':
         ensure      => 'present',
-        release     => '',
+        release     => './',
         location    => $repo,
-        repos       => './',
+        repos       => '',
         include_src => false,
       }
       include apt
