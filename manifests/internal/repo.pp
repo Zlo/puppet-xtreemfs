@@ -27,7 +27,7 @@ class xtreemfs::internal::repo {
         release     => './',
         location    => $repo,
         repos       => '',
-        include_src => false,
+        include     => { 'src' => false },
       }
       include apt
       include apt::update
